@@ -1,0 +1,19 @@
+{
+  "name": "traffic_graffic",
+  "version": "1.0.0",
+  "description": "Use Google API to graph hourly travel time from work to home",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "cwklausing",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.6",
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "path": "^0.12.7",
+    "pg": "^4.5.5"
+  }
+}
