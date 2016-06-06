@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Traffic Graffic</title>
+    <link></head>
     <script type="text/javascript" src="/vendors/angular.min.js"></script>
+    <script type="text/javascript" src="/vendors/angular-route.min.js"></script>
     <script type="text/javascript" src="/scripts/clientapp.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/CalcRouteController.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/VizController.js"></script>
 </head>
-<body>
+<body ng-app="tgApp">
     <h1>Traffic Graffic</h1>
+    <div ng-view></div>
 </body>
 </html>

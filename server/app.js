@@ -5,6 +5,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
+var traffic = require('./routes/traffic');
 
 //for serving static files
 app.use(express.static(path.join(__dirname, './public')));
