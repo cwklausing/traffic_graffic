@@ -3,7 +3,6 @@ var app = express();
 var pg = require('pg');
 var path = require('path');
 var bodyParser = require('body-parser');
-
 var index = require('./routes/index');
 var traffic = require('./routes/traffic');
 
