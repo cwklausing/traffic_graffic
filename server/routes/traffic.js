@@ -5,6 +5,24 @@ var pg = require('pg');
 var request = require('request');
 var connectionString = 'postgres://localhost:5432/traffic';
 
+router.get('/', function (req, res) {
+    pg.connect(connectionString, function (err, client, done) {
+        if (err) {
+            res.sendStatus(500);
+        }
+        client.query('SELECT * FROM route_data WHERE departuretime' +
+            '> (begin, end)' + 'VALUES($)',
+            [begintime, endtime],
+            function (err, result) {
+                done();
+                if (err) {
+                    res.sendStatus(500);
+                }
+                res.send(result);
+            })
+    });
+});
+
 router.post('/', function (req, res) {
     //Set new variables
     var time = new Date();
@@ -37,11 +55,14 @@ router.post('/', function (req, res) {
                     if(err) {
                         res.sendStatus(500);
                     }
+
+                    //If no error, then send 'seconds' back to the client side
+                    console.log(seconds);
+                    //Finally, send back the travel time in seconds to the client side
+                    res.send({"seconds": seconds});
             })
         });
     });
-    //Finally, send back the travel time in seconds to the client side
-    res.send({"seconds": seconds});
 });
 
 module.exports = router;

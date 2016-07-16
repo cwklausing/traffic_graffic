@@ -2,15 +2,15 @@ var tgApp = angular.module('tgApp', ['ngRoute']);
 
 tgApp.config(['$routeProvider', function($routeProvider) {
     $routeProvider
-        .when('/calcroute', {
+        .when('/home', {
             templateUrl: '/views/partials/calcroute.html',
             controller: "CalcRouteController"
         })
-        .when('/visualize', {
+        .when('/graph', {
             templateUrl: '/views/partials/visualization.html',
             controller: "VizController"
         })
         .otherwise({
-            redirectTo: 'calcroute'
+            redirectTo: '/home'
         })
 }]);
