@@ -1,3 +1,3 @@
-tgApp.controller('VizController', ['$scope', '$http', function($scope, $http) {
-    console.log("viz controller!");
+tgApp.controller('VizController', ['$http', function($http) {
+    var vm = this;
 }]);
