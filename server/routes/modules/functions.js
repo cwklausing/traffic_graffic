@@ -1,9 +1,11 @@
-function urlConstruct () {
+var router = require('express').Router();
+//Construt url for API request to google maps
+router.urlConstruct = function () {
     var start = "44.8329,-93.3005";
     var end = "44.9575,-93.1665";
 
     //Query information
-    var key = "AIzaSyD6qJyxzBQfRHYoR2es_uQP9JRN8nK1fLg";
+    var key = process.env.API_KEY;
     var query = "https://maps.googleapis.com/maps/api/distancematrix/";
     var outputFormat = "json?units=imperial&";
     var origins = "origins=" + start;
@@ -20,4 +22,4 @@ function urlConstruct () {
     return query;
 }
 
-module.exports = urlConstruct;
+module.exports = router;

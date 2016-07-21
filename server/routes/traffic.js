@@ -1,26 +1,32 @@
 var express = require('express');
 var router = express.Router();
-var urlConstruct = require('./modules/urlConstruct');
+var func = require('./modules/functions');
 var pg = require('pg');
 var request = require('request');
 var connectionString = 'postgres://localhost:5432/traffic';
 
-router.get('/', function (req, res) {
-    pg.connect(connectionString, function (err, client, done) {
-        if (err) {
-            res.sendStatus(500);
-        }
-        client.query('SELECT * FROM route_data WHERE departuretime' +
-            '> (begin, end)' + 'VALUES($)',
-            [begintime, endtime],
-            function (err, result) {
-                done();
-                if (err) {
-                    res.sendStatus(500);
-                }
-                res.send(result);
-            })
-    });
+router.get('/:mintime/:maxtime', function (req, res) {
+    //Split time into object containing min and max:
+    var mintime = req.params.mintime;
+    var maxtime = req.params.maxtime;
+    console.log("min: ", mintime, "max :", maxtime);
+     //pg.connect(connectionString, function (err, client, done) {
+     //    if (err) {
+     //        console.log("line 15:", err);
+     //        res.sendStatus(500);
+     //    }
+     //    client.query('SELECT * FROM route_data WHERE departuretime' +
+     //        '> $1 AND departuretime < $2',
+     //        [mintime, maxtime],
+     //        function (err, result) {
+     //            done();
+     //            if (err) {
+     //                console.log("line 24", err);
+     //                res.sendStatus(500);
+     //            }
+     //            res.send(result);
+     //        })
+     //});
 });
 
 router.post('/', function (req, res) {
@@ -28,7 +34,7 @@ router.post('/', function (req, res) {
     var time = new Date();
     var seconds = null;
     //Called from the urlConstruct module
-    var query = urlConstruct();
+    var query = func.urlConstruct();
 
     //Making our API request using the 'request' npm module
     request(query, function (error, response, body) {

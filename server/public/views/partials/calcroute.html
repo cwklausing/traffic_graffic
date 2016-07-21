@@ -3,6 +3,8 @@
     <div class="trafficgraffic">
         <p>{{calc.message}}</p>
         <p>This section will display the optimal time based on the slider--to be calculated automatically</p>
+        <input type="time" ng-model="calc.timeRangeMin"/>
+        <input type="time" ng-model="calc.timeRangeMax" />
         <button ng-click="calc.getDataRange()"></button>
     </div>
 </section>

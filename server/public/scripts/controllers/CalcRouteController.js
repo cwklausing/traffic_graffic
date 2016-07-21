@@ -1,8 +1,10 @@
-tgApp.controller('CalcRouteController', ['$http', '$interval', function($http, $interval) {
+tgApp.controller('CalcRouteController', ['$http', function($http) {
     var vm = this;
-    //trafficRequest();
-
     vm.message = "This section will contain a slider bar to select two times (min and max)";
+
+    //variables for min and max
+    vm.timeRangeMin = null;
+    vm.timeRangeMax = null;
 
     function trafficRequest() {
         //Making request for information
@@ -14,12 +16,16 @@ tgApp.controller('CalcRouteController', ['$http', '$interval', function($http, $
     }
 
 
-    vm.getDataRange = function(begin, end) {
-        var timerange = '' + begin + end;
-        $http.get('/traffic' + timerange).then(
+    vm.getDataRange = function() {
+        var minTime = vm.timeRangeMin;
+        var maxTime = vm.timeRangeMax;
+        console.log(minTime, maxTime);
+        $http.get('/traffic/' + minTime + "/" + maxTime).then(
             function(data) {
                 console.log(data);
             }
         )
     }
+
+    trafficRequest();
 }]);
